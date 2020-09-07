@@ -54,4 +54,11 @@ In XML based Spring MVC configuration, you must have seen two declarations in we
   
   The context of ContextLoaderListener contains beans that globally visible, like services, repositories, infrastructure beans, etc. After 
   the root application context is created, it’s stored in ServletContext as an attribute(All contexts are added to ServletContext).
+  
++ summary : 
+
+  Generally, you will define all MVC related beans (controller and views etc) in DispatcherServlet context, and all cross-cutting beans such as 
+  security, transaction, services etc. at root context by ContextLoaderListener.
+
+  Generally, this setup works fine because rarely you will need to access any MVC bean (from child context) into security related class (from root context). Mostly we use         security beans on MVC classes, and they can access it with above setup.
     
